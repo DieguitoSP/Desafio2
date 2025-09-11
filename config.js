@@ -207,8 +207,8 @@ var config = {
             //legend: '<span style="font-size: 0.85em;"><em>Legend content</em></span>',
             description: 'Un 16 de febrero de 1990, su trazo ancho y firme nos dejó debido a complicaciones derivadas del Sida. El 4 de mayo de ese mismo año se celebró el servicio conmemorativo en la Catedral de "San Juan el Divino" de Nueva York, donde su enorme espiritu fue recordado por mas de 1000 personas. Toda la obra su obra está administrada por la fundación que lleva su nombre. www.haring.com',
             location: {
-                center: [-75.29484, 43.10055],
-                zoom: 12,
+                center: [-74.00477, 40.70971],
+                zoom: 12.46,
                 pitch: 25,
                 bearing: 0
             },
