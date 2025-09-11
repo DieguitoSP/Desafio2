@@ -63,7 +63,7 @@ var config = {
             image: './images/CrackIsWack1986NY.webp',
             description: '"Crack Is Wack" Año: 1986. Ubicado en una cancha de balonmano en Harlem, Nueva York. Este mural fue pintado por Haring sin permiso, eso no impidió que se amara. Ya que fue y a día de hoy es, una llamada a la acción social. Haring supo llamar la atención de un creciente problema, la drogas y el impacto de las mismas en nuestras sociedades. No es la única obra de Haring sobre esta temática existen muchas más algunas las veremos mas adelante. Tamaño: 5x8 Metros Aprox. ',
             location: {
-                center: [-73.93184, 40.80437],
+                center: [-74.00584, 40.71475],
                 zoom: 10,
                 pitch: 25,
                 bearing: 0
