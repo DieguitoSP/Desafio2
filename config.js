@@ -201,7 +201,7 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: 'Despedida',
-            image: './images/littleKeith.png',
+            image: './images/LittleKeith.png',
             //caption: 'Source image caption',
             //website: '<a href="" target="_blank"> https://es.wikipedia.org/wiki/Plaza_del_Emperador_Carlos_V </a>',
             //legend: '<span style="font-size: 0.85em;"><em>Legend content</em></span>',
