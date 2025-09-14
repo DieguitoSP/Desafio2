@@ -38,7 +38,11 @@
             border: 1px solid rgb(100, 100, 100);
             transition: opacity 0.5s ease-in-out;
             pointer-events: none;
+            display: none; /* oculto por defecto; solo se muestra si inset está activo */
         }
+/* Posicionamiento dinámico del inset: por defecto a la derecha */
+        #mapInset.right { right: 30px; left: auto; }
+        #mapInset.left { left: 30px; right: auto; }
 
         #bookmarks {
             margin: 0;
@@ -216,6 +220,12 @@
         .legend div #text {
             vertical-align: top;
         }
+        /* Tamaño opcional reducido */
+        /*.legend.small { transform: scale(0.85); opacity: 0.9; transition: transform .25s ease, opacity .25s ease; }*/
+
+        /* Posición a izquierda/derecha (mutuamente excluyentes) */
+        .legend.left  { left: 30px;  right: auto; bottom: 30px; position: fixed; display: block; }
+        .legend.right { right: 30px; left:  auto; bottom: 30px; position: fixed; display: block; }
 
         .maplibregl-ctrl {
             margin-right: 30px !important;
@@ -313,6 +323,31 @@
             'center': 'centered',
             'right': 'righty',
             'full': 'fully'
+        }
+
+        function setLegendSideForChapter(chapterRecord) {
+            // “invierte” el lado del capítulo: si el chapter está a la derecha, leyenda a la izquierda, y viceversa.
+            const invertedSide = (chapterRecord.alignment === 'right') ? 'left' : 'right';
+            const legendId = chapterRecord.id + 'Legend';
+            const el = document.getElementById(legendId);
+            if (!el) return;
+
+            el.classList.remove('left', 'right');
+            el.classList.add(invertedSide);
+        }
+
+        function setLegendSmallForChapter(chapterRecord, isSmall) {
+            const el = document.getElementById(chapterRecord.id + 'Legend');
+            if (!el) return;
+            el.classList.toggle('small', !!isSmall);
+        }
+       // Posiciona el inset al lado opuesto del capítulo actual
+        function setInsetSideForChapter(chapterRecord) {
+            const insetEl = document.getElementById('mapInset');
+            if (!insetEl) return;
+            const invertedSide = (chapterRecord.alignment === 'right') ? 'left' : 'right';
+            insetEl.classList.remove('left', 'right');
+            insetEl.classList.add(invertedSide);
         }
 
         function getLayerPaintType(layer) {
@@ -546,6 +581,9 @@
 
         // Create a inset map if enabled in config.js
         if (config.inset && !config.legend) {
+            // mostrar el contenedor del inset si está habilitado
+            var insetEl = document.getElementById('mapInset');
+            if (insetEl) insetEl.style.display = 'block';
             var insetMap = new maplibregl.Map({
                 container: 'mapInset', // container id
                 style: config.style, //hosted style id
@@ -556,12 +594,16 @@
                 interactive: false,
                 attributionControl: false,
             });
+           // Posicionar el inset al lado opuesto del primer capítulo
+            setInsetSideForChapter(config.chapters[0]);
+        } else {
+            // ocultar el contenedor si no se usa inset
+            var insetEl = document.getElementById('mapInset');
+            if (insetEl) insetEl.style.display = 'none';
         }
 
-        if (config.showMarkers) {
-            var marker = new maplibregl.Marker({ color: config.markerColor });
-            marker.setLngLat(config.chapters[0].location.center).addTo(map);
-        }
+        // Marker instance (created after map load)
+        var marker;
 
         // instantiate the scrollama
         var scroller = scrollama();
@@ -594,6 +636,34 @@
                 map.on('move', getInsetBounds);
             }
 
+            // Create marker after map has fully loaded to avoid default pin flashing on first POI
+            if (config.showMarkers && !marker) {
+                var markerOptions = {};
+                if (config.markerImage && String(config.markerImage).trim() !== '') {
+                    var el = document.createElement('div');
+                    el.className = 'custom-marker';
+                    var w = (config.markerImageSize && config.markerImageSize[0]) ? config.markerImageSize[0] : 32;
+                    var h = (config.markerImageSize && config.markerImageSize[1]) ? config.markerImageSize[1] : 32;
+                    el.style.width = w + 'px';
+                    el.style.height = h + 'px';
+                    // Asegúrate de ocultar el pin por defecto del Marker de MapLibre cuando usamos un elemento personalizado
+                    el.style.background = 'none';
+                    el.style.boxShadow = 'none';
+                    el.style.border = 'none';
+                    // Aplica la imagen personalizada
+                    el.style.backgroundImage = 'url(' + config.markerImage + ')';
+                    el.style.backgroundSize = 'contain';
+                    el.style.backgroundRepeat = 'no-repeat';
+                    el.style.backgroundPosition = 'center';
+                    el.style.cursor = 'pointer';
+                    markerOptions.element = el;
+                } else {
+                    markerOptions.color = config.markerColor;
+                }
+                marker = new maplibregl.Marker(markerOptions);
+                marker.setLngLat(config.chapters[0].location.center).addTo(map);
+            }
+
             // setup the instance, pass callback functions
             scroller
                 .setup({
@@ -603,19 +673,32 @@
                 })
                 .onStepEnter(async response => {
                     var chapter = config.chapters.find(chap => chap.id === response.element.id);
-
-                    // add legend to each chapter
+              
+                // add legend to each chapter
                     if (config.legend && !config.inset) {
                         for (i = 0; i < config.chapters.length; i++) {
-                            if (config.chapters[i].legend != undefined) {
-                                if (config.chapters[i].id == response.element.id) {
-                                    document.getElementById(config.chapters[i].id + "Legend").style.display = "block";
-                                } else {
-                                    document.getElementById(config.chapters[i].id + "Legend").style.display = "none";
-                                }
+                            const chap = config.chapters[i];
+                            const lid = chap.id + "Legend";
+                            const lel = document.getElementById(lid);
+                            if (!lel) continue;
+
+                            if (chap.id == response.element.id) {
+                                // Mostrar la leyenda del capítulo activo
+                                lel.style.display = "block";
+
+                                // Colocar la leyenda en el lado opuesto al alignment del capítulo
+                                setLegendSideForChapter(chap);
+
+                                // (Opcional) hacerla pequeña al entrar (quítalo si no lo quieres)
+                                setLegendSmallForChapter(chap, true);
+                            } else {
+                                // Ocultar las demás
+                                lel.style.display = "none";
+                                lel.classList.remove('left', 'right', 'small');
                             }
-                        };
+                        }
                     }
+
 
                     response.element.classList.add('active');
                     map[chapter.mapAnimation || 'flyTo'](chapter.location);
@@ -629,7 +712,11 @@
                         else {
                             insetMap.flyTo({ center: chapter.location.center, zoom: 3 });
                         }
+                        // Cambiar el lado del inset según el capítulo actual
+                        setInsetSideForChapter(chapter);
                     }
+
+
                     if (config.showMarkers) {
                         marker.setLngLat(chapter.location.center);
                     }
