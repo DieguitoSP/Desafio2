@@ -125,7 +125,7 @@ var config = {
             hidden: false,
             title: 'Tuttomondo',
             image: './images/TuttoMondo1989Pisa.png',
-            description: '"Tuttomondo" Año: 1989. Este mural está pintado en la pared trasera de la Iglesia de San Antonio Abate en la cidad de Pisa, Italia. Es la manera de Haring de retratrar la variedad social del momento, mostrando una harmónica agitación de personajes icónicos del artista en el que todo el mundo "Tuttomondo", nos podemos sentir reflejados con nuestra diferencias. En esta obra se ve la evolución su lenguaje, haciéndonos participes directos mediante una representación universal. Desde la esperanza del recien nacido pasando por la serpiente, continua represantación del mal en la obra de Haring...tuttomondo. Tamaño: 180 metros cuadrados.',
+            description: '"Tuttomondo" Año: 1989. Este mural está pintado en la pared trasera de la Iglesia de San Antonio Abate en la cidad de Pisa, Italia. Es la manera de Haring de retratrar la variedad social del momento, mostrando una harmónica agitación de personajes icónicos del artista en el que todo el mundo "Tuttomondo", nos podemos sentir reflejados con nuestras diferencias. En esta obra se ve la evolución de su lenguaje, haciéndonos participes directos mediante una representación universal. Desde la esperanza del recien nacido pasando por la serpiente, continua represantación del mal en la obra de Haring...tuttomondo. Tamaño: 180 metros cuadrados.',
             location: {
                 center: [10.39811, 43.71106],
                 zoom: 14,
@@ -161,7 +161,7 @@ var config = {
             hidden: false,
             title: 'Todos juntos podemos parar el sida',
             image: './images/KeithHarringBarcelona1989.png',
-            description: '"Todos juntos podemos parar el sida" Año: 1989. Esta fue una de las últimas obras junto con "Tuttomondo", se realizó originalmente en el barrio del Raval (En 1989, el Raval era conocido como el Barrio Chino),a su vuelta de Madrid y motivado por su amiga Montse Guillén propietaria del restaurante "El Internacional de Nueva York", Haring acepta realizar una acción en Barcelona con la única condición de que el elegiría el lugar donde se realizaría el mural. Eligiendo una plaza en el corazón del Raval, la plaza de Salvador Seguí, una plaza deteriorada cómo muchas en esa época. Optó por una de las paredes donde aparecían mas jeringuillas cada día. Pese a que en 1989 Haring era un artista altamente cotizado esta obra se realizó solo con el interés de regalar la reflexión de que solo si estamos todos juntos podemos acabar podemos hacer frente a una epidemia como es el Sida. Debido al deterioro del mural por vandalizaciones y las inclmencias del tiempo fue adquirido por el Museo de Arte Contemporaneo de Barcelona (MACBA) en 1997. En 2014 fue restaurado desde un calco y de nuevo expuesto en la plaza Coromines junto al MACBA. Tamaño: 23.5 x 34 metros',
+            description: '"Todos juntos podemos parar el sida" Año: 1989. Esta fue una de las últimas obras junto con "Tuttomondo", se realizó originalmente en el barrio del Raval (En 1989, el Raval era conocido como el Barrio Chino),tras su vuelta de Madrid y motivado por su amiga Montse Guillén propietaria del restaurante "El Internacional de Nueva York", Haring acepta realizar una acción en Barcelona con la única condición de que el elegiría el lugar donde se realizaría el mural. Eligiendo una plaza en el corazón del Raval, la plaza de Salvador Seguí, una plaza deteriorada cómo muchas en esa época. Optó por una de las paredes donde aparecían mas jeringuillas cada día. Pese a que en 1989 Haring era un artista altamente cotizado esta obra se realizó solo con el interés de regalar la reflexión de que solo si estamos todos juntos podemos hacer frente a una epidemia como es el Sida. Debido al deterioro del mural por vandalizaciones y las inclmencias del tiempo fue adquirido por el Museo de Arte Contemporaneo de Barcelona (MACBA) en 1997. En 2014 fue restaurado desde un calco y de nuevo expuesto en la plaza Coromines junto al MACBA. Tamaño: 23.5 x 34 metros',
             location: {
                 center: [2.16627, 41.38319],
                 zoom: 17,
@@ -197,7 +197,7 @@ var config = {
             hidden: false,
             title: 'Despedida',
             image: './images/LittleKeith.png',
-            description: 'Un 16 de febrero de 1990, su trazo ancho y firme nos dejó debido a complicaciones derivadas del Sida. El 4 de mayo de ese mismo año se celebró el servicio conmemorativo en la Catedral de "San Juan el Divino" de Nueva York, donde su enorme espiritu fue recordado por mas de 1000 personas. Toda la obra su obra está administrada por la fundación que lleva su nombre. www.haring.com',
+            description: 'Un 16 de febrero de 1990, su trazo ancho y firme nos dejó debido a complicaciones derivadas del Sida. El 4 de mayo de ese mismo año se celebró el servicio conmemorativo en la Catedral de "San Juan el Divino" de Nueva York, donde su enorme espiritu fue recordado por mas de 1000 personas. Desde su fallecimiento la obra de Haring está administrada por la fundación que lleva su nombre. www.haring.com',
             location: {
                 center: [-73.99193, 40.70612],
                 zoom: 12.46,
