@@ -48,6 +48,8 @@
 ## Especial Mención.
 
 [Descubriendo a KEITH HARING!!](https://www.youtube.com/watch?v=w0TPULDDqDc)
+
+
 [WorkShop de Felipe Valdez](https://felipevaldez.com/storytelling_maplibre_workshop/)
 
 - Para este trabajo se ha utilizado la IA de DeepSeek para dudas técnicas referentes a JavaScript y la IA de Google "Gemini" para realización de listas y el esquema principal de trabajo.
