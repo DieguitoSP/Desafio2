@@ -1,5 +1,6 @@
 FROM docker.io/python:alpine
-# Creamos un usuario sin privilegios para cumplir con buenas prácticas de seguridad en K8sRUN addgroup -S appgroup && adduser -S appuser -G appgroup
+# Creamos un usuario sin privilegios para cumplir con buenas prácticas de seguridad en K8s
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 WORKDIR /content
 # Instalamos dependencias y añadimos el certificado de tu registro local
 RUN apk add --no-cache curl ca-certificates
